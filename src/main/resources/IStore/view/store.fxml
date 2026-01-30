@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="IStore.controller.StoreController"
+            stylesheets="@../css/styles.css" styleClass="main-container">
+
+    <!-- Header -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT"
+              style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Button text="← Retour" onAction="#handleBack" styleClass="header-button"/>
+            <Label fx:id="storeNameLabel" text="Magasin" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <HBox spacing="20" style="-fx-padding: 20;">
+
+            <!-- Inventaire -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS">
+                <Label text="📦 Inventaire" styleClass="section-title">
+                    <font>
+                        <Font size="18" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <TableView fx:id="itemsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="nameColumn" text="Nom" prefWidth="200"/>
+                        <TableColumn fx:id="priceColumn" text="Prix (€)" prefWidth="100"/>
+                        <TableColumn fx:id="quantityColumn" text="Quantité" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10">
+                    <Button fx:id="addItemBtn" text="➕ Ajouter" onAction="#handleAddItem" styleClass="primary-button"/>
+                    <Button text="✏️ Modifier" onAction="#handleEditItem" styleClass="secondary-button"/>
+                    <Button fx:id="deleteItemBtn" text="🗑️ Supprimer" onAction="#handleDeleteItem" styleClass="danger-button"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="📥 Réception (+)" onAction="#handleIncreaseStock" styleClass="success-button"/>
+                    <Button text="📤 Vente (-)" onAction="#handleDecreaseStock" styleClass="warning-button"/>
+                </HBox>
+            </VBox>
+
+            <!-- Employés avec accès -->
+            <VBox spacing="15" prefWidth="280">
+                <Label text="👥 Employés avec accès" styleClass="section-title">
+                    <font>
+                        <Font size="18" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <ListView fx:id="employeesListView" VBox.vgrow="ALWAYS"/>
+
+                <HBox spacing="10">
+                    <Button fx:id="addEmployeeBtn" text="➕ Ajouter" onAction="#handleAddEmployee" styleClass="primary-button"/>
+                    <Button fx:id="removeEmployeeBtn" text="➖ Retirer" onAction="#handleRemoveEmployee" styleClass="danger-button"/>
+                </HBox>
+            </VBox>
+
+        </HBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="IStore.controller.RegisterController"
+      stylesheets="@../css/styles.css" styleClass="main-container">
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <!-- Titre -->
+    <VBox alignment="CENTER" spacing="5">
+        <Text text="🏪 iStore" styleClass="app-title">
+            <font>
+                <Font size="32" name="System Bold"/>
+            </font>
+        </Text>
+        <Text text="Création de compte" styleClass="subtitle">
+            <font>
+                <Font size="16"/>
+            </font>
+        </Text>
+    </VBox>
+
+    <!-- Formulaire d'inscription -->
+    <VBox spacing="12" alignment="CENTER" maxWidth="300">
+
+        <VBox spacing="5">
+            <Label text="Email *"/>
+            <TextField fx:id="emailField" promptText="votre@email.com" prefWidth="280"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Pseudo *"/>
+            <TextField fx:id="pseudoField" promptText="Votre pseudo" prefWidth="280"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Mot de passe *"/>
+            <PasswordField fx:id="passwordField" promptText="Minimum 6 caractères" prefWidth="280"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Confirmer le mot de passe *"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Retapez le mot de passe" prefWidth="280"/>
+        </VBox>
+
+        <Label text="* Votre email doit être whitelisté par un admin"
+               style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+
+        <Button text="Créer mon compte" onAction="#handleRegister" styleClass="primary-button"
+                prefWidth="280" prefHeight="35"/>
+
+        <Separator/>
+
+        <Button text="← Retour à la connexion" onAction="#handleBackToLogin" styleClass="link-button"/>
+    </VBox>
+
+</VBox>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="IStore.controller.ProfileController"
+            stylesheets="@../css/styles.css" styleClass="main-container">
+
+    <!-- Header -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT"
+              style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Button text="← Retour" onAction="#handleBack" styleClass="header-button"/>
+            <Label text="👤 Mon profil" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 30;" alignment="CENTER">
+
+            <!-- Info actuelle -->
+            <VBox spacing="5" alignment="CENTER">
+                <Label fx:id="emailLabel" text="email@exemple.com" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                <Label fx:id="roleLabel" text="Rôle" style="-fx-text-fill: #7f8c8d;"/>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Formulaire de modification -->
+            <VBox spacing="15" maxWidth="350">
+                <Label text="Modifier mes informations" styleClass="section-title"/>
+
+                <VBox spacing="5">
+                    <Label text="Pseudo"/>
+                    <TextField fx:id="pseudoField" promptText="Votre pseudo"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Email"/>
+                    <TextField fx:id="emailField" promptText="votre@email.com"/>
+                </VBox>
+
+                <Separator/>
+
+                <Label text="Changer le mot de passe (optionnel)" style="-fx-font-weight: bold;"/>
+
+                <VBox spacing="5">
+                    <Label text="Nouveau mot de passe"/>
+                    <PasswordField fx:id="newPasswordField" promptText="Laisser vide pour ne pas changer"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Confirmer le nouveau mot de passe"/>
+                    <PasswordField fx:id="confirmPasswordField" promptText="Retapez le mot de passe"/>
+                </VBox>
+
+                <Button text="💾 Enregistrer les modifications" onAction="#handleSave"
+                        styleClass="primary-button" maxWidth="Infinity"/>
+
+                <Separator/>
+
+                <Button text="🗑️ Supprimer mon compte" onAction="#handleDeleteAccount"
+                        styleClass="danger-button" maxWidth="Infinity"/>
+            </VBox>
+
+        </VBox>
+    </center>
+
+    <!-- Hidden field for current password validation -->
+    <bottom>
+        <PasswordField fx:id="currentPasswordField" visible="false" managed="false"/>
+    </bottom>
+
+</BorderPane>

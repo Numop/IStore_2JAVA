@@ -1,0 +1,226 @@
+/*
+ * iStore - Styles CSS
+ * Application de gestion d'inventaire
+ */
+
+/* ===== Conteneur principal ===== */
+.main-container {
+    -fx-background-color: #ecf0f1;
+}
+
+/* ===== Texte et titres ===== */
+.app-title {
+    -fx-fill: #2c3e50;
+}
+
+.subtitle {
+    -fx-fill: #7f8c8d;
+}
+
+.section-title {
+    -fx-text-fill: #2c3e50;
+}
+
+.page-title {
+    -fx-text-fill: #2c3e50;
+}
+
+/* ===== Boutons ===== */
+.button {
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.primary-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.secondary-button {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+.danger-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.danger-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+.success-button {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+}
+
+.success-button:hover {
+    -fx-background-color: #219a52;
+}
+
+.warning-button {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+}
+
+.warning-button:hover {
+    -fx-background-color: #d68910;
+}
+
+.header-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-radius: 5;
+}
+
+.header-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.link-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3498db;
+    -fx-underline: true;
+}
+
+.link-button:hover {
+    -fx-text-fill: #2980b9;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 15;
+}
+
+.menu-button:hover {
+    -fx-background-color: #d5dbdb;
+    -fx-background-radius: 5;
+}
+
+/* ===== Champs de texte ===== */
+.text-field, .password-field {
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    -fx-background-color: #d5dbdb;
+    -fx-background-radius: 10;
+}
+
+/* ===== Tableaux ===== */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+}
+
+.table-view .column-header {
+    -fx-background-color: #2c3e50;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #3498db;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: white;
+}
+
+/* ===== Listes ===== */
+.list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+}
+
+.list-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.list-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+/* ===== Séparateurs ===== */
+.separator {
+    -fx-padding: 10 0;
+}
+
+/* ===== Labels ===== */
+.label {
+    -fx-text-fill: #2c3e50;
+}
+
+/* ===== Alertes ===== */
+.alert {
+    -fx-background-color: white;
+}
+
+.alert .header-panel {
+    -fx-background-color: #3498db;
+}
+
+.alert .header-panel .label {
+    -fx-text-fill: white;
+}
+
+/* ===== Scroll bars ===== */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #bdc3c7;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #95a5a6;
+}
+
+/* ===== Dialogues ===== */
+.dialog-pane {
+    -fx-background-color: white;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #3498db;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: white;
+}

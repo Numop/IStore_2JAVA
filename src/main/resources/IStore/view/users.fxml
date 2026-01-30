@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="IStore.controller.UserManagementController"
+            stylesheets="@../css/styles.css" styleClass="main-container">
+
+    <!-- Header -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT"
+              style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Button text="← Retour" onAction="#handleBack" styleClass="header-button"/>
+            <Label text="👥 Gestion des utilisateurs" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- Content -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+
+            <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="250"/>
+                    <TableColumn fx:id="pseudoColumn" text="Pseudo" prefWidth="150"/>
+                    <TableColumn fx:id="roleColumn" text="Rôle" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10">
+                <Button text="✏️ Modifier" onAction="#handleEditUser" styleClass="secondary-button"/>
+                <Button text="🗑️ Supprimer" onAction="#handleDeleteUser" styleClass="danger-button"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="IStore.controller.LoginController"
+      stylesheets="@../css/styles.css" styleClass="main-container">
+
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <!-- Logo/Titre -->
+    <VBox alignment="CENTER" spacing="5">
+        <Text text="🏪 iStore" styleClass="app-title">
+            <font>
+                <Font size="36" name="System Bold"/>
+            </font>
+        </Text>
+        <Text text="Système de gestion d'inventaire" styleClass="subtitle">
+            <font>
+                <Font size="14"/>
+            </font>
+        </Text>
+    </VBox>
+
+    <!-- Formulaire de connexion -->
+    <VBox spacing="15" alignment="CENTER" maxWidth="300">
+        <Label text="Connexion" styleClass="section-title">
+            <font>
+                <Font size="20" name="System Bold"/>
+            </font>
+        </Label>
+
+        <VBox spacing="5">
+            <Label text="Email"/>
+            <TextField fx:id="emailField" promptText="votre@email.com" prefWidth="280"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Mot de passe"/>
+            <PasswordField fx:id="passwordField" promptText="••••••••" prefWidth="280"/>
+        </VBox>
+
+        <Button text="Se connecter" onAction="#handleLogin" styleClass="primary-button"
+                prefWidth="280" prefHeight="35"/>
+
+        <Separator/>
+
+        <VBox spacing="10" alignment="CENTER">
+            <Label text="Pas encore de compte ?"/>
+            <Button text="Créer un compte" onAction="#handleRegister" styleClass="secondary-button"
+                    prefWidth="280" prefHeight="35"/>
+        </VBox>
+    </VBox>
+
+</VBox>

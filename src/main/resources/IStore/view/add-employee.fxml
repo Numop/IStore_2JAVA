@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="IStore.controller.AddEmployeeController"
+      stylesheets="@../css/styles.css" styleClass="main-container"
+      style="-fx-padding: 20;">
+
+    <Label text="Sélectionner un utilisateur à ajouter" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+
+    <ListView fx:id="usersListView" VBox.vgrow="ALWAYS"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Annuler" onAction="#handleCancel" styleClass="secondary-button"/>
+        <Button text="Ajouter" onAction="#handleAdd" styleClass="primary-button"/>
+    </HBox>
+
+</VBox>
