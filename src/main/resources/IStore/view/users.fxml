@@ -32,8 +32,8 @@
             </TableView>
 
             <HBox spacing="10">
-                <Button text="✏️ Modifier" onAction="#handleEditUser" styleClass="secondary-button"/>
-                <Button text="🗑️ Supprimer" onAction="#handleDeleteUser" styleClass="danger-button"/>
+                <Button text="Modifier" onAction="#handleEditUser" styleClass="secondary-button"/>
+                <Button text="➖ Supprimer" onAction="#handleDeleteUser" styleClass="danger-button"/>
             </HBox>
 
         </VBox>

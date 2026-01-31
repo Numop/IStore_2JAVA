@@ -42,8 +42,8 @@
 
                 <HBox spacing="10">
                     <Button fx:id="addItemBtn" text="➕ Ajouter" onAction="#handleAddItem" styleClass="primary-button"/>
-                    <Button text="✏️ Modifier" onAction="#handleEditItem" styleClass="secondary-button"/>
-                    <Button fx:id="deleteItemBtn" text="🗑️ Supprimer" onAction="#handleDeleteItem" styleClass="danger-button"/>
+                    <Button text="Modifier" onAction="#handleEditItem" styleClass="secondary-button"/>
+                    <Button fx:id="deleteItemBtn" text="➖ Supprimer" onAction="#handleDeleteItem" styleClass="danger-button"/>
                     <Region HBox.hgrow="ALWAYS"/>
                     <Button text="📥 Réception (+)" onAction="#handleIncreaseStock" styleClass="success-button"/>
                     <Button text="📤 Vente (-)" onAction="#handleDecreaseStock" styleClass="warning-button"/>

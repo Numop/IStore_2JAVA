@@ -41,7 +41,7 @@
                 <Separator/>
                 <Button fx:id="manageUsersBtn" text="👥 Gérer les utilisateurs"
                         onAction="#handleManageUsers" styleClass="menu-button" maxWidth="Infinity"/>
-                <Button fx:id="manageWhitelistBtn" text="✉️ Whitelist emails"
+                <Button fx:id="manageWhitelistBtn" text="✉ Whitelist emails"
                         onAction="#handleManageWhitelist" styleClass="menu-button" maxWidth="Infinity"/>
                 <Separator/>
                 <Button fx:id="createStoreBtn" text="➕ Nouveau magasin"
@@ -65,7 +65,7 @@
 
                 <HBox spacing="10">
                     <Button text="📦 Ouvrir le magasin" onAction="#handleOpenStore" styleClass="primary-button"/>
-                    <Button text="🗑️ Supprimer" onAction="#handleDeleteStore" styleClass="danger-button"/>
+                    <Button text="➖ Supprimer" onAction="#handleDeleteStore" styleClass="danger-button"/>
                 </HBox>
 
                 <Label text="Double-cliquez sur un magasin pour l'ouvrir"

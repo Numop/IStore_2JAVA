@@ -53,13 +53,31 @@ Application Java complète pour la gestion d'inventaire de magasins, développé
 
 - **Java JDK 19** ou supérieur
 - **Maven 3.8+**
+- **MySQL 8.0+** (avec le serveur en cours d'exécution)
 - Connexion Internet (pour télécharger les dépendances)
+
+### Configuration de la base de données MySQL
+
+1. Démarrer le serveur MySQL
+2. Créer la base de données :
+
+```sql
+CREATE DATABASE db_IStore CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+3. Vérifier la configuration dans `DatabaseManager.java` :
+   - **Host** : `localhost`
+   - **Port** : `3306`
+   - **Database** : `db_IStore`
+   - **User** : `root`
+   - **Password** : `` (vide par défaut, modifiez si nécessaire)
 
 ### Vérifier les versions installées
 
 ```bash
 java -version
 mvn -version
+mysql --version
 ```
 
 ---
@@ -80,7 +98,7 @@ mvn clean install
 
 Cette commande va :
 - Télécharger JavaFX 19.0.2
-- Télécharger SQLite JDBC
+- Télécharger MySQL Connector/J
 - Télécharger BCrypt
 - Télécharger JUnit 5 (pour les tests)
 - Compiler le projet
