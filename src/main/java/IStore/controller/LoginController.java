@@ -60,7 +60,7 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/register.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(new Scene(root, 400, 500));
+            stage.setScene(new Scene(root, 400, 580));
             stage.setTitle("iStore - Inscription");
         } catch (IOException e) {
             AlertUtil.showError("Erreur", "Impossible de charger l'écran d'inscription");
@@ -76,7 +76,7 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/dashboard.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
+            stage.setScene(new Scene(root, 950, 700));
             stage.setTitle("iStore - Tableau de bord");
         } catch (IOException e) {
             AlertUtil.showError("Erreur", "Impossible de charger le tableau de bord");

@@ -122,13 +122,13 @@ public class ProfileController {
             if (SessionManager.isLoggedIn()) {
                 fxmlPath = "/IStore/view/dashboard.fxml";
                 title = "iStore - Tableau de bord";
-                width = 900;
-                height = 600;
+                width = 950;
+                height = 700;
             } else {
                 fxmlPath = "/IStore/view/login.fxml";
                 title = "iStore - Connexion";
                 width = 400;
-                height = 400;
+                height = 550;
             }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));

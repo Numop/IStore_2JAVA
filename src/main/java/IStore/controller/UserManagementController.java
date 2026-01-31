@@ -192,7 +192,7 @@ public class UserManagementController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/dashboard.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) usersTable.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
+            stage.setScene(new Scene(root, 950, 700));
             stage.setTitle("iStore - Tableau de bord");
         } catch (IOException e) {
             AlertUtil.showError("Erreur", "Impossible de retourner au tableau de bord");

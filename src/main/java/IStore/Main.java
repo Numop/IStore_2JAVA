@@ -40,7 +40,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/login.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 400, 450);
+        Scene scene = new Scene(root, 400, 550);
 
         primaryStage.setTitle("iStore - Connexion");
         primaryStage.setScene(scene);

@@ -211,7 +211,7 @@ public class DashboardController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/login.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) storeListView.getScene().getWindow();
-                stage.setScene(new Scene(root, 400, 400));
+                stage.setScene(new Scene(root, 400, 550));
                 stage.setTitle("iStore - Connexion");
             } catch (IOException e) {
                 AlertUtil.showError("Erreur", "Erreur lors de la déconnexion");

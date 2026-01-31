@@ -64,7 +64,7 @@ public class RegisterController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/login.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(new Scene(root, 400, 400));
+            stage.setScene(new Scene(root, 400, 550));
             stage.setTitle("iStore - Connexion");
         } catch (IOException e) {
             AlertUtil.showError("Erreur", "Impossible de charger l'écran de connexion");
