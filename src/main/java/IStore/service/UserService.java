@@ -11,13 +11,6 @@ import IStore.util.ValidationUtil;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Service de gestion des utilisateurs.
- * Gère les opérations CRUD sur les utilisateurs avec contrôle d'accès.
- *
- * @author IStore Team
- * @version 1.0
- */
 public class UserService {
     private final UserDAO userDAO;
     private final StoreAccessDAO storeAccessDAO;
@@ -27,9 +20,6 @@ public class UserService {
         this.storeAccessDAO = new StoreAccessDAO();
     }
 
-    /**
-     * Résultat d'une opération
-     */
     public static class ServiceResult {
         private final boolean success;
         private final String message;
@@ -43,24 +33,14 @@ public class UserService {
         public String getMessage() { return message; }
     }
 
-    /**
-     * Récupère tous les utilisateurs (sans les mots de passe pour les non-admin)
-     * @return Liste des utilisateurs
-     */
     public List<User> getAllUsers() {
         List<User> users = userDAO.findAll();
-        // Masquer les mots de passe pour la sécurité
         for (User user : users) {
             user.setPassword("[PROTECTED]");
         }
         return users;
     }
 
-    /**
-     * Récupère un utilisateur par son ID
-     * @param id L'ID de l'utilisateur
-     * @return L'utilisateur ou null
-     */
     public User getUserById(int id) {
         Optional<User> userOpt = userDAO.findById(id);
         if (userOpt.isPresent()) {
@@ -71,28 +51,17 @@ public class UserService {
         return null;
     }
 
-    /**
-     * Met à jour un utilisateur
-     * @param userId L'ID de l'utilisateur à modifier
-     * @param newPseudo Le nouveau pseudo
-     * @param newEmail Le nouvel email
-     * @param newPassword Le nouveau mot de passe (vide = pas de changement)
-     * @return Le résultat de l'opération
-     */
     public ServiceResult updateUser(int userId, String newPseudo, String newEmail, String newPassword) {
         User currentUser = SessionManager.getCurrentUser();
 
-        // Vérification des permissions
         if (currentUser == null) {
             return new ServiceResult(false, "Vous devez être connecté");
         }
 
-        // Seul l'utilisateur lui-même ou un admin peut modifier
         if (currentUser.getId() != userId && !currentUser.isAdmin()) {
             return new ServiceResult(false, "Vous n'avez pas la permission de modifier cet utilisateur");
         }
 
-        // Récupérer l'utilisateur à modifier
         Optional<User> userOpt = userDAO.findById(userId);
         if (userOpt.isEmpty()) {
             return new ServiceResult(false, "Utilisateur non trouvé");
@@ -100,29 +69,24 @@ public class UserService {
 
         User userToUpdate = userOpt.get();
 
-        // Validation du pseudo
         String pseudoError = ValidationUtil.validatePseudo(newPseudo);
         if (pseudoError != null) {
             return new ServiceResult(false, pseudoError);
         }
 
-        // Validation de l'email
         String emailError = ValidationUtil.validateEmail(newEmail);
         if (emailError != null) {
             return new ServiceResult(false, emailError);
         }
 
-        // Vérifier si le nouvel email est déjà utilisé par un autre utilisateur
         Optional<User> existingUser = userDAO.findByEmail(newEmail);
         if (existingUser.isPresent() && existingUser.get().getId() != userId) {
             return new ServiceResult(false, "Cet email est déjà utilisé par un autre utilisateur");
         }
 
-        // Mise à jour des champs
         userToUpdate.setPseudo(newPseudo.trim());
         userToUpdate.setEmail(newEmail.toLowerCase().trim());
 
-        // Mise à jour du mot de passe si fourni
         if (!ValidationUtil.isEmpty(newPassword)) {
             String passwordError = ValidationUtil.validatePassword(newPassword);
             if (passwordError != null) {
@@ -131,9 +95,7 @@ public class UserService {
             userToUpdate.setPassword(PasswordUtil.hashPassword(newPassword));
         }
 
-        // Sauvegarder
         if (userDAO.update(userToUpdate)) {
-            // Mettre à jour la session si c'est l'utilisateur courant
             if (currentUser.getId() == userId) {
                 SessionManager.setCurrentUser(userToUpdate);
             }
@@ -143,12 +105,6 @@ public class UserService {
         return new ServiceResult(false, "Erreur lors de la mise à jour");
     }
 
-    /**
-     * Met à jour le rôle d'un utilisateur (admin uniquement)
-     * @param userId L'ID de l'utilisateur
-     * @param newRole Le nouveau rôle
-     * @return Le résultat de l'opération
-     */
     public ServiceResult updateUserRole(int userId, Role newRole) {
         User currentUser = SessionManager.getCurrentUser();
 
@@ -175,11 +131,6 @@ public class UserService {
         return new ServiceResult(false, "Erreur lors de la mise à jour du rôle");
     }
 
-    /**
-     * Supprime un utilisateur
-     * @param userId L'ID de l'utilisateur à supprimer
-     * @return Le résultat de l'opération
-     */
     public ServiceResult deleteUser(int userId) {
         User currentUser = SessionManager.getCurrentUser();
 
@@ -187,17 +138,13 @@ public class UserService {
             return new ServiceResult(false, "Vous devez être connecté");
         }
 
-        // Seul l'utilisateur lui-même ou un admin peut supprimer
         if (currentUser.getId() != userId && !currentUser.isAdmin()) {
             return new ServiceResult(false, "Vous n'avez pas la permission de supprimer cet utilisateur");
         }
 
-        // Supprimer les accès aux magasins
         storeAccessDAO.removeAllAccessForUser(userId);
 
-        // Supprimer l'utilisateur
         if (userDAO.delete(userId)) {
-            // Si l'utilisateur supprime son propre compte, déconnecter
             if (currentUser.getId() == userId) {
                 SessionManager.logout();
             }

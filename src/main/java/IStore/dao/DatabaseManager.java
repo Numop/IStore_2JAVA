@@ -5,15 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Gestionnaire de connexion à la base de données MySQL.
- * Implémente le pattern Singleton pour une connexion unique.
- *
- * @author IStore Team
- * @version 1.0
- */
 public class DatabaseManager {
-    // Configuration MySQL
     private static final String DB_HOST = "localhost";
     private static final String DB_PORT = "3306";
     private static final String DB_NAME = "projet_istore";
@@ -26,12 +18,8 @@ public class DatabaseManager {
     private static DatabaseManager instance;
     private Connection connection;
 
-    /**
-     * Constructeur privé - initialise la connexion et crée les tables
-     */
     private DatabaseManager() {
         try {
-            // Charger le driver MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             createTables();
@@ -45,10 +33,6 @@ public class DatabaseManager {
         }
     }
 
-    /**
-     * Obtient l'instance unique du DatabaseManager
-     * @return L'instance du DatabaseManager
-     */
     public static synchronized DatabaseManager getInstance() {
         if (instance == null) {
             instance = new DatabaseManager();
@@ -56,10 +40,6 @@ public class DatabaseManager {
         return instance;
     }
 
-    /**
-     * Obtient la connexion à la base de données
-     * @return La connexion SQL
-     */
     public Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
@@ -71,12 +51,8 @@ public class DatabaseManager {
         return connection;
     }
 
-    /**
-     * Crée toutes les tables nécessaires à l'application
-     */
     private void createTables() {
         try (Statement stmt = connection.createStatement()) {
-            // Table des utilisateurs
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS users (
                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -87,7 +63,6 @@ public class DatabaseManager {
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
             """);
 
-            // Table des magasins
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS stores (
                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -95,7 +70,6 @@ public class DatabaseManager {
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
             """);
 
-            // Table des articles (inventaire lié au magasin)
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS items (
                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -107,7 +81,6 @@ public class DatabaseManager {
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
             """);
 
-            // Table de la whitelist
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS whitelist (
                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -115,7 +88,6 @@ public class DatabaseManager {
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
             """);
 
-            // Table d'accès aux magasins (relation many-to-many)
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS store_access (
                     user_id INT NOT NULL,
@@ -132,9 +104,6 @@ public class DatabaseManager {
         }
     }
 
-    /**
-     * Ferme la connexion à la base de données
-     */
     public void closeConnection() {
         try {
             if (connection != null && !connection.isClosed()) {

@@ -8,12 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * DAO pour la gestion des utilisateurs en base de données.
- *
- * @author IStore Team
- * @version 1.0
- */
 public class UserDAO {
     private final Connection connection;
 
@@ -21,11 +15,6 @@ public class UserDAO {
         this.connection = DatabaseManager.getInstance().getConnection();
     }
 
-    /**
-     * Crée un nouvel utilisateur
-     * @param user L'utilisateur à créer
-     * @return L'utilisateur créé avec son ID
-     */
     public User create(User user) {
         String sql = "INSERT INTO users (email, pseudo, password, role) VALUES (?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -47,11 +36,6 @@ public class UserDAO {
         return user;
     }
 
-    /**
-     * Trouve un utilisateur par son ID
-     * @param id L'ID de l'utilisateur
-     * @return Optional contenant l'utilisateur ou vide
-     */
     public Optional<User> findById(int id) {
         String sql = "SELECT * FROM users WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -67,11 +51,6 @@ public class UserDAO {
         return Optional.empty();
     }
 
-    /**
-     * Trouve un utilisateur par son email
-     * @param email L'email de l'utilisateur
-     * @return Optional contenant l'utilisateur ou vide
-     */
     public Optional<User> findByEmail(String email) {
         String sql = "SELECT * FROM users WHERE LOWER(email) = LOWER(?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -87,10 +66,6 @@ public class UserDAO {
         return Optional.empty();
     }
 
-    /**
-     * Récupère tous les utilisateurs
-     * @return Liste de tous les utilisateurs
-     */
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM users ORDER BY id";
@@ -105,11 +80,6 @@ public class UserDAO {
         return users;
     }
 
-    /**
-     * Met à jour un utilisateur
-     * @param user L'utilisateur à mettre à jour
-     * @return true si succès
-     */
     public boolean update(User user) {
         String sql = "UPDATE users SET email = ?, pseudo = ?, password = ?, role = ? WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -125,11 +95,6 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Supprime un utilisateur
-     * @param id L'ID de l'utilisateur à supprimer
-     * @return true si succès
-     */
     public boolean delete(int id) {
         String sql = "DELETE FROM users WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -141,10 +106,6 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Compte le nombre d'utilisateurs
-     * @return Le nombre d'utilisateurs
-     */
     public int count() {
         String sql = "SELECT COUNT(*) FROM users";
         try (Statement stmt = connection.createStatement();
@@ -158,18 +119,10 @@ public class UserDAO {
         return 0;
     }
 
-    /**
-     * Vérifie si un email existe déjà
-     * @param email L'email à vérifier
-     * @return true si l'email existe
-     */
     public boolean emailExists(String email) {
         return findByEmail(email).isPresent();
     }
 
-    /**
-     * Convertit un ResultSet en objet User
-     */
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         return new User(
             rs.getInt("id"),
@@ -180,4 +133,3 @@ public class UserDAO {
         );
     }
 }
-

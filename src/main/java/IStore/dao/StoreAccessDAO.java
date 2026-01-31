@@ -8,12 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * DAO pour la gestion des accès aux magasins (relation User-Store).
- *
- * @author IStore Team
- * @version 1.0
- */
 public class StoreAccessDAO {
     private final Connection connection;
 
@@ -21,14 +15,8 @@ public class StoreAccessDAO {
         this.connection = DatabaseManager.getInstance().getConnection();
     }
 
-    /**
-     * Ajoute un accès utilisateur à un magasin
-     * @param userId L'ID de l'utilisateur
-     * @param storeId L'ID du magasin
-     * @return true si succès
-     */
     public boolean addAccess(int userId, int storeId) {
-        String sql = "INSERT OR IGNORE INTO store_access (user_id, store_id) VALUES (?, ?)";
+        String sql = "INSERT IGNORE INTO store_access (user_id, store_id) VALUES (?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             pstmt.setInt(2, storeId);
@@ -40,12 +28,6 @@ public class StoreAccessDAO {
         }
     }
 
-    /**
-     * Supprime un accès utilisateur à un magasin
-     * @param userId L'ID de l'utilisateur
-     * @param storeId L'ID du magasin
-     * @return true si succès
-     */
     public boolean removeAccess(int userId, int storeId) {
         String sql = "DELETE FROM store_access WHERE user_id = ? AND store_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -58,12 +40,6 @@ public class StoreAccessDAO {
         }
     }
 
-    /**
-     * Vérifie si un utilisateur a accès à un magasin
-     * @param userId L'ID de l'utilisateur
-     * @param storeId L'ID du magasin
-     * @return true si l'utilisateur a accès
-     */
     public boolean hasAccess(int userId, int storeId) {
         String sql = "SELECT COUNT(*) FROM store_access WHERE user_id = ? AND store_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -80,11 +56,6 @@ public class StoreAccessDAO {
         return false;
     }
 
-    /**
-     * Récupère tous les magasins auxquels un utilisateur a accès
-     * @param userId L'ID de l'utilisateur
-     * @return Liste des magasins accessibles
-     */
     public List<Store> getAccessibleStores(int userId) {
         List<Store> stores = new ArrayList<>();
         String sql = """
@@ -107,11 +78,6 @@ public class StoreAccessDAO {
         return stores;
     }
 
-    /**
-     * Récupère tous les utilisateurs ayant accès à un magasin
-     * @param storeId L'ID du magasin
-     * @return Liste des utilisateurs avec accès
-     */
     public List<User> getUsersWithAccess(int storeId) {
         List<User> users = new ArrayList<>();
         String sql = """
@@ -140,11 +106,6 @@ public class StoreAccessDAO {
         return users;
     }
 
-    /**
-     * Supprime tous les accès d'un utilisateur
-     * @param userId L'ID de l'utilisateur
-     * @return true si succès
-     */
     public boolean removeAllAccessForUser(int userId) {
         String sql = "DELETE FROM store_access WHERE user_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -157,11 +118,6 @@ public class StoreAccessDAO {
         }
     }
 
-    /**
-     * Supprime tous les accès à un magasin
-     * @param storeId L'ID du magasin
-     * @return true si succès
-     */
     public boolean removeAllAccessForStore(int storeId) {
         String sql = "DELETE FROM store_access WHERE store_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
