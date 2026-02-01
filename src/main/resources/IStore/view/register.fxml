@@ -5,60 +5,78 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="IStore.controller.RegisterController"
-      stylesheets="@../css/styles.css" styleClass="main-container">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="IStore.controller.RegisterController"
+           stylesheets="@../css/styles.css" styleClass="main-container"
+           prefWidth="900" prefHeight="750">
 
-    <padding>
-        <Insets top="30" right="40" bottom="30" left="40"/>
-    </padding>
+    <VBox alignment="CENTER">
 
-    <!-- Titre -->
-    <VBox alignment="CENTER" spacing="5">
-        <Text text="🏪 iStore" styleClass="app-title">
-            <font>
-                <Font size="32" name="System Bold"/>
-            </font>
-        </Text>
-        <Text text="Création de compte" styleClass="subtitle">
-            <font>
-                <Font size="16"/>
-            </font>
-        </Text>
+        <VBox styleClass="login-card" spacing="24" maxWidth="420" alignment="CENTER">
+
+            <!-- Header -->
+            <VBox alignment="CENTER" spacing="8">
+                <Label text="✨" style="-fx-font-size: 42;"/>
+                <Text text="Créer un compte" styleClass="app-title">
+                    <font>
+                        <Font size="28" name="System Bold"/>
+                    </font>
+                </Text>
+                <Text text="Rejoignez iStore dès maintenant" styleClass="subtitle">
+                    <font>
+                        <Font size="14"/>
+                    </font>
+                </Text>
+            </VBox>
+
+            <!-- Formulaire -->
+            <VBox spacing="14">
+
+                <!-- Email -->
+                <VBox spacing="8">
+                    <Label text="Adresse email *" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                    <TextField fx:id="emailField" promptText="exemple@email.com" prefHeight="42"/>
+                </VBox>
+
+                <!-- Pseudo -->
+                <VBox spacing="8">
+                    <Label text="Pseudo *" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                    <TextField fx:id="pseudoField" promptText="Votre pseudo" prefHeight="42"/>
+                </VBox>
+
+                <!-- Mot de passe -->
+                <HBox spacing="12">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Mot de passe *" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                        <PasswordField fx:id="passwordField" promptText="••••••••" prefHeight="42"/>
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Confirmer *" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                        <PasswordField fx:id="confirmPasswordField" promptText="••••••••" prefHeight="42"/>
+                    </VBox>
+                </HBox>
+
+                <Label text="Votre email doit être whitelistée par un admin"
+                       style="-fx-font-size: 11; -fx-text-fill: #6b7280;"/>
+
+            </VBox>
+
+            <!-- Actions -->
+            <VBox spacing="16">
+                <Button text="Créer mon compte" onAction="#handleRegister" styleClass="primary-button"
+                        prefWidth="360" prefHeight="44"/>
+
+                <Separator/>
+
+                <HBox alignment="CENTER" spacing="8" style="-fx-padding: 0 0 16 0;">
+                    <Label text="Déjà un compte ?" styleClass="subtitle"/>
+                    <Button text="Se connecter" onAction="#handleBackToLogin" styleClass="link-button"/>
+                </HBox>
+            </VBox>
+
+        </VBox>
+
     </VBox>
 
-    <!-- Formulaire d'inscription -->
-    <VBox spacing="12" alignment="CENTER" maxWidth="300">
+</StackPane>
 
-        <VBox spacing="5">
-            <Label text="Email *"/>
-            <TextField fx:id="emailField" promptText="votre@email.com" prefWidth="280"/>
-        </VBox>
-
-        <VBox spacing="5">
-            <Label text="Pseudo *"/>
-            <TextField fx:id="pseudoField" promptText="Votre pseudo" prefWidth="280"/>
-        </VBox>
-
-        <VBox spacing="5">
-            <Label text="Mot de passe *"/>
-            <PasswordField fx:id="passwordField" promptText="Minimum 6 caractères" prefWidth="280"/>
-        </VBox>
-
-        <VBox spacing="5">
-            <Label text="Confirmer le mot de passe *"/>
-            <PasswordField fx:id="confirmPasswordField" promptText="Retapez le mot de passe" prefWidth="280"/>
-        </VBox>
-
-        <Label text="* Votre email doit être whitelisté par un admin"
-               style="-fx-font-size: 11; -fx-text-fill: #666;"/>
-
-        <Button text="Créer mon compte" onAction="#handleRegister" styleClass="primary-button"
-                prefWidth="280" prefHeight="35"/>
-
-        <Separator/>
-
-        <Button text="← Retour à la connexion" onAction="#handleBackToLogin" styleClass="link-button"/>
-    </VBox>
-
-</VBox>

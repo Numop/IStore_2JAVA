@@ -60,7 +60,7 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/register.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(new Scene(root, 400, 580));
+            stage.setScene(new Scene(root, 400, 650));
             stage.setTitle("iStore - Inscription");
         } catch (IOException e) {
             AlertUtil.showError("Erreur", "Impossible de charger l'écran d'inscription");

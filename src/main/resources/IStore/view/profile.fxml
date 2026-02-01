@@ -12,62 +12,78 @@
     <!-- Header -->
     <top>
         <HBox spacing="20" alignment="CENTER_LEFT"
-              style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+              style="-fx-background-color: #1a1a24; -fx-padding: 16 24; -fx-border-color: #252532; -fx-border-width: 0 0 1 0;">
             <Button text="← Retour" onAction="#handleBack" styleClass="header-button"/>
-            <Label text="👤 Mon profil" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Label text="👤 Mon Profil" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
         </HBox>
     </top>
 
     <!-- Content -->
     <center>
-        <VBox spacing="20" style="-fx-padding: 30;" alignment="CENTER">
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #0f0f14;">
+            <VBox spacing="24" style="-fx-padding: 32;" alignment="TOP_CENTER">
 
-            <!-- Info actuelle -->
-            <VBox spacing="5" alignment="CENTER">
-                <Label fx:id="emailLabel" text="email@exemple.com" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
-                <Label fx:id="roleLabel" text="Rôle" style="-fx-text-fill: #7f8c8d;"/>
+                <!-- Profile Card -->
+                <VBox styleClass="card" spacing="24" maxWidth="480">
+
+                    <!-- Avatar -->
+                    <VBox alignment="CENTER" spacing="12">
+                        <Label text="👤" style="-fx-font-size: 56; -fx-background-color: #252532; -fx-background-radius: 50; -fx-padding: 16;"/>
+                        <Label fx:id="emailLabel" text="email@exemple.com" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label fx:id="roleLabel" text="Rôle" style="-fx-background-color: rgba(99,102,241,0.2); -fx-text-fill: #818cf8; -fx-padding: 4 12; -fx-background-radius: 12; -fx-font-size: 12;"/>
+                    </VBox>
+
+                    <Separator/>
+
+                    <!-- Form -->
+                    <VBox spacing="16">
+                        <Label text="Modifier mes informations" styleClass="section-title" style="-fx-text-fill: white;"/>
+
+                        <VBox spacing="8">
+                            <Label text="Pseudo" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                            <TextField fx:id="pseudoField" promptText="Votre pseudo" prefHeight="42"/>
+                        </VBox>
+
+                        <VBox spacing="8">
+                            <Label text="Email" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                            <TextField fx:id="emailField" promptText="votre@email.com" prefHeight="42"/>
+                        </VBox>
+                    </VBox>
+
+                    <Button text="💾 Enregistrer les modifications" onAction="#handleSave"
+                            styleClass="primary-button" maxWidth="Infinity" prefHeight="42"/>
+
+                </VBox>
+
+                <!-- Password Card -->
+                <VBox styleClass="card" spacing="20" maxWidth="480">
+
+                    <Label text="🔒 Changer le mot de passe" styleClass="section-title" style="-fx-text-fill: white;"/>
+
+                    <VBox spacing="16">
+                        <VBox spacing="8">
+                            <Label text="Nouveau mot de passe" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                            <PasswordField fx:id="newPasswordField" promptText="Laisser vide pour ne pas changer" prefHeight="42"/>
+                        </VBox>
+
+                        <VBox spacing="8">
+                            <Label text="Confirmer le mot de passe" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                            <PasswordField fx:id="confirmPasswordField" promptText="Retapez le mot de passe" prefHeight="42"/>
+                        </VBox>
+                    </VBox>
+
+                </VBox>
+
+                <!-- Danger Zone -->
+                <VBox styleClass="card" spacing="16" maxWidth="480" style="-fx-border-color: #ef4444;">
+                    <Label text="⚠ Zone de danger" style="-fx-text-fill: #ef4444; -fx-font-weight: bold;"/>
+                    <Label text="La suppression de votre compte est irréversible." style="-fx-text-fill: #6b7280; -fx-font-size: 12;"/>
+                    <Button text="➖ Supprimer mon compte" onAction="#handleDeleteAccount"
+                            styleClass="danger-button" maxWidth="Infinity" prefHeight="42"/>
+                </VBox>
+
             </VBox>
-
-            <Separator/>
-
-            <!-- Formulaire de modification -->
-            <VBox spacing="15" maxWidth="350">
-                <Label text="Modifier mes informations" styleClass="section-title"/>
-
-                <VBox spacing="5">
-                    <Label text="Pseudo"/>
-                    <TextField fx:id="pseudoField" promptText="Votre pseudo"/>
-                </VBox>
-
-                <VBox spacing="5">
-                    <Label text="Email"/>
-                    <TextField fx:id="emailField" promptText="votre@email.com"/>
-                </VBox>
-
-                <Separator/>
-
-                <Label text="Changer le mot de passe (optionnel)" style="-fx-font-weight: bold;"/>
-
-                <VBox spacing="5">
-                    <Label text="Nouveau mot de passe"/>
-                    <PasswordField fx:id="newPasswordField" promptText="Laisser vide pour ne pas changer"/>
-                </VBox>
-
-                <VBox spacing="5">
-                    <Label text="Confirmer le nouveau mot de passe"/>
-                    <PasswordField fx:id="confirmPasswordField" promptText="Retapez le mot de passe"/>
-                </VBox>
-
-                <Button text="💾 Enregistrer les modifications" onAction="#handleSave"
-                        styleClass="primary-button" maxWidth="Infinity"/>
-
-                <Separator/>
-
-                <Button text="🗑️ Supprimer mon compte" onAction="#handleDeleteAccount"
-                        styleClass="danger-button" maxWidth="Infinity"/>
-            </VBox>
-
-        </VBox>
+        </ScrollPane>
     </center>
 
     <!-- Hidden field for current password validation -->

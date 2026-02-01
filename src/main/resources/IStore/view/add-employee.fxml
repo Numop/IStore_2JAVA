@@ -4,18 +4,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="15" xmlns:fx="http://javafx.com/fxml"
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml"
       fx:controller="IStore.controller.AddEmployeeController"
       stylesheets="@../css/styles.css" styleClass="main-container"
-      style="-fx-padding: 20;">
+      style="-fx-padding: 24; -fx-background-color: #1a1a24;">
 
-    <Label text="Sélectionner un utilisateur à ajouter" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+    <Label text="👥 Ajouter un employé" style="-fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: white;"/>
 
-    <ListView fx:id="usersListView" VBox.vgrow="ALWAYS"/>
+    <Label text="Sélectionnez un utilisateur pour l'ajouter à l'équipe."
+           style="-fx-text-fill: #6b7280; -fx-font-size: 13;" wrapText="true"/>
 
-    <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button text="Annuler" onAction="#handleCancel" styleClass="secondary-button"/>
-        <Button text="Ajouter" onAction="#handleAdd" styleClass="primary-button"/>
+    <VBox VBox.vgrow="ALWAYS" spacing="8">
+        <Label text="Utilisateurs disponibles" style="-fx-text-fill: #9ca3af; -fx-font-size: 13; -fx-font-weight: bold;"/>
+        <ListView fx:id="usersListView" VBox.vgrow="ALWAYS"/>
+    </VBox>
+
+    <HBox spacing="12" alignment="CENTER_RIGHT">
+        <Button text="Annuler" onAction="#handleCancel" styleClass="secondary-button" prefHeight="40"/>
+        <Button text="➕ Ajouter au magasin" onAction="#handleAdd" styleClass="primary-button" prefHeight="40"/>
     </HBox>
 
 </VBox>

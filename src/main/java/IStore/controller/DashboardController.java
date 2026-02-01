@@ -33,6 +33,7 @@ public class DashboardController {
     @FXML private Button manageUsersBtn;
     @FXML private Button manageWhitelistBtn;
     @FXML private Button createStoreBtn;
+    @FXML private Button deleteStoreBtn;
 
     private final AuthService authService = new AuthService();
     private final StoreService storeService = new StoreService();
@@ -57,6 +58,10 @@ public class DashboardController {
             if (manageUsersBtn != null) manageUsersBtn.setVisible(isAdmin);
             if (manageWhitelistBtn != null) manageWhitelistBtn.setVisible(isAdmin);
             if (createStoreBtn != null) createStoreBtn.setVisible(isAdmin);
+            if (deleteStoreBtn != null) {
+                deleteStoreBtn.setVisible(isAdmin);
+                deleteStoreBtn.setManaged(isAdmin);
+            }
         }
 
         refreshStoreList();
@@ -158,7 +163,7 @@ public class DashboardController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/users.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) storeListView.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
+            stage.setScene(new Scene(root, 690, 600));
             stage.setTitle("iStore - Gestion des utilisateurs");
         } catch (IOException e) {
             AlertUtil.showError("Erreur", "Impossible d'ouvrir la gestion des utilisateurs");
@@ -175,7 +180,7 @@ public class DashboardController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/whitelist.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) storeListView.getScene().getWindow();
-            stage.setScene(new Scene(root, 600, 500));
+            stage.setScene(new Scene(root, 650, 650));
             stage.setTitle("iStore - Whitelist");
         } catch (IOException e) {
             AlertUtil.showError("Erreur", "Impossible d'ouvrir la whitelist");
@@ -211,7 +216,7 @@ public class DashboardController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/IStore/view/login.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) storeListView.getScene().getWindow();
-                stage.setScene(new Scene(root, 400, 550));
+                stage.setScene(new Scene(root, 450, 580));
                 stage.setTitle("iStore - Connexion");
             } catch (IOException e) {
                 AlertUtil.showError("Erreur", "Erreur lors de la déconnexion");
